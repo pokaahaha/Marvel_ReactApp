@@ -8,28 +8,30 @@ import { Component } from "react";
 import decoration from "../../resources/img/vision.png";
 
 class App extends Component {
-
-
   state = {
-    selectedChar: null
-  }
+    selectedChar: null,
+  };
 
-  onCharSelected = (id) =>{
-    this.setState ({
-      selectedChar: id
-    })
-  }
+  onCharSelected = (id) => {
+    this.setState({
+      selectedChar: id,
+    });
+  };
 
   render() {
     return (
       <div className="app">
         <AppHeader />
         <main>
-          <RandomChar />
+          <ErrorBoundary>
+            <RandomChar />
+          </ErrorBoundary>
           <div className="char__content">
-            <CharList onCharSelected={this.onCharSelected} />
             <ErrorBoundary>
-            <CharInfo charId={this.state.selectedChar}/>
+              <CharList onCharSelected={this.onCharSelected} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <CharInfo charId={this.state.selectedChar} />
             </ErrorBoundary>
           </div>
           <img className="bg-decoration" src={decoration} alt="vision" />
@@ -37,6 +39,6 @@ class App extends Component {
       </div>
     );
   }
-};
+}
 
 export default App;
