@@ -17,7 +17,7 @@ const RandomChar = () => {
     return () => {
       clearInterval(timerId);
     };
-  }, []);
+  },[]);
 
   const onCharLoaded = (char) => {
     setChar(char);
